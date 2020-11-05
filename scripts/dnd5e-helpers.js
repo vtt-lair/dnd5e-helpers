@@ -393,3 +393,27 @@ let type = item.type
   }
 });
 
+/** elemental adept: WIP */
+Hooks.on("preCreateChatMessage", async (msg, options, userId) => {
+
+  const isDamage = getProperty(msg, "flags.dnd5e.roll.type") === "damage";
+  const itemId = getProperty(msg, "flags.dnd5e.roll.itemId");
+
+  /** bail out if not a damage roll */
+  if (!isDamage || itemId == undefined ){
+    return;
+  }
+
+  const speaker = getProperty(msg, "speaker");
+  const rollJson = getProperty(msg, "roll");
+
+  if (speaker && rollJson){
+    console.log("it was a damage roll!");
+    const rollData = JSON.parse(rollJson);
+
+    /** get actor id */
+
+    console.log(rollData);
+  }
+
+});
