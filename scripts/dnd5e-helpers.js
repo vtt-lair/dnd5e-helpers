@@ -409,9 +409,20 @@ Hooks.on("preCreateChatMessage", async (msg, options, userId) => {
 
   if (speaker && rollJson){
     console.log("it was a damage roll!");
+
+    /** has to be a spell AND the actor has to have an elemental adept feature */
+    const item = game.actors.get(speaker.actor)?.getOwnedItem(itemId);
+    const adeptDamage = canvas.tokens.get(speaker.token)?.actor.data.items.find(e => e.name === "Elemental Adept")?.data.requirements;
+    if(item.type === "spell" && adeptDamage){
+      /** check if the spell contains a fire damage field */
+      const matchesDamage = item.data.data.damage.parts.find( e => e[1] === adeptDamage );
+      console.log(`${item.name} qualifies for elemental adept with ${adeptDamage} damage`);
+    }
+
     const rollData = JSON.parse(rollJson);
 
     /** get actor id */
+    
 
     console.log(rollData);
   }
