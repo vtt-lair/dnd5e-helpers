@@ -1,0 +1,11 @@
+{
+  "scripts": {
+    "doc": "jsdoc --configure jsdoc.conf"
+  },
+  "dependencies": {
+    "clean-jsdoc-theme": "^3.3.4"
+  },
+  "devDependencies": {
+    "@league-of-foundry-developers/foundry-vtt-types": "^9.269.0"
+  }
+}

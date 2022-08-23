@@ -70,7 +70,7 @@ export class AbilityRecharge {
   }
 
   static _collectRechargeItems(token) {
-    const rechargeItems = token.actor.items.filter(e => AbilityRecharge._needsRecharge(e.data.data.recharge));
+    const rechargeItems = token.actor?.items.filter(e => AbilityRecharge._needsRecharge(e.data.data.recharge)) ?? [];
 
     return rechargeItems;
   }
@@ -83,15 +83,18 @@ export class AbilityRecharge {
       // Roll the check
       const roll = await(new Roll("1d6").evaluate({async: true}));
       const success = roll.total >= parseInt(data.recharge.value);
-      const rollMode = MODULE.setting("hideAbilityRecharge") == true ? "selfroll" : "";
+      const rollMode = MODULE.setting("hideAbilityRecharge") == true ? "blindroll" : "";
 
       // Display a Chat Message
       // @todo rollMode is not being respected...
       await roll.toMessage({
         flavor: `${game.i18n.format("DND5E.ItemRechargeCheck", {name: item.name})} - ${game.i18n.localize(success ? "DND5E.ItemRechargeSuccess" : "DND5E.ItemRechargeFailure")}`,
         speaker: ChatMessage.getSpeaker({actor: item.actor, token: item.actor.token}),
-        rollMode
-      });
+        },
+        {
+          rollMode
+        }
+      );
 
       // Update the Item data
       if (success) await item.update({"data.recharge.charged": true});
