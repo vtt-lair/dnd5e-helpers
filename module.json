@@ -1,8 +1,29 @@
 {
-    "name": "dnd5e-helpers",
+    "id": "dnd5e-helpers",
+    "name": "dnd5e-helpers",    
     "title": "DnD5e Helpers",
     "description": "Little helpers for little tasks.",
     "system": ["dnd5e", "sw5e"],
+    "relationships": {
+        "systems": [
+            {
+                "id": "dnd5e",
+                "type": "system",
+                "manifest": "https://github.com/foundryvtt/dnd5e/releases/download/release-2.0.3/system.json",
+                "compatibility": {
+                    "verified": "2.0.3"
+                }
+            },
+            {
+                "id": "sw5e",
+                "type": "system",
+                "manifest": "https://github.com/unrealkakeman89/sw5e/releases/download/1.6.2.2.2.2/system.json",
+                "compatibility": {
+                    "verified": "1.6.2.2.2.2"
+                }
+            }
+        ]
+    },
     "version": "3.0.0-alpha",
     "author": "honeybadger, Kandashi, kekilla",
     "authors": [
@@ -58,6 +79,10 @@
     "url": "https://github.com/trioderegion/dnd5e-helpers",
     "manifest": "",
     "download": "",
-    "minimumCoreVersion": "9",
-    "compatibleCoreVersion": "9"
+    "minimumCoreVersion": "10",
+    "compatibleCoreVersion": "10",
+    "compatibility": {
+        "minimum": "10",
+        "verified": "10"
+    }
 }
